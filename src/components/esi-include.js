@@ -8,7 +8,10 @@ export default class GatsbyESIIncludes extends React.Component {
       data: ``,
     }
 
-    if (process.env.BUILD_STAGE === `build-javascript`) {
+    if (
+      typeof window !== `undefined` &&
+      process.env.BUILD_STAGE === `build-javascript`
+    ) {
       fetch(props.src)
         .then(res => res.text())
         .then(data => {
@@ -37,7 +40,7 @@ export default class GatsbyESIIncludes extends React.Component {
       return (
         <div
           dangerouslySetInnerHTML={{
-            __html: `<esi:include src="${this.props.src}" ${onErr} />`,
+            __html: `hello world`,
           }}
         />
       )
